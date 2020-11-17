@@ -1,0 +1,12 @@
+C:\Projects\ShareStay\Infrastructure\bin\Debug\netstandard2.1\Infrastructure.deps.json
+C:\Projects\ShareStay\Infrastructure\bin\Debug\netstandard2.1\Infrastructure.dll
+C:\Projects\ShareStay\Infrastructure\bin\Debug\netstandard2.1\Infrastructure.pdb
+C:\Projects\ShareStay\Infrastructure\bin\Debug\netstandard2.1\Core.dll
+C:\Projects\ShareStay\Infrastructure\bin\Debug\netstandard2.1\Core.pdb
+C:\Projects\ShareStay\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.csprojAssemblyReference.cache
+C:\Projects\ShareStay\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.AssemblyInfoInputs.cache
+C:\Projects\ShareStay\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.AssemblyInfo.cs
+C:\Projects\ShareStay\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Projects\ShareStay\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.csproj.CopyComplete
+C:\Projects\ShareStay\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.dll
+C:\Projects\ShareStay\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.pdb
