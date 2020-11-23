@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
@@ -24,5 +25,15 @@ namespace Infrastructure.Repositories
         {
             return await _context.Rooms.ToListAsync();
         }
+
+        public List<Room> GetFavourites(string userId)
+        {
+
+            return _context.Favourites
+               .Where(f => f.AppUserId == userId)
+               .Select(f => f.Room)
+               .ToList();
+
+        }   
     }
 }

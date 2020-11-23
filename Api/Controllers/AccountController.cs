@@ -5,6 +5,7 @@ using Api.Errors;
 using Api.Extentions;
 using Core.Entities;
 using Core.Interfaces;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,14 @@ namespace Api.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService)
+        private readonly IProfileRepository _profileRepository;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService, RoomContext context, IProfileRepository profileRepository)
         {
+            _profileRepository = profileRepository;
             _tokenService = tokenService;
             _signInManager = signInManager;
             _userManager = userManager;
+
 
         }
 
@@ -83,7 +87,20 @@ namespace Api.Controllers
                 UserName = registerDto.Email
             };
 
+            var profile = new Profile
+            {
+                UserEmail = registerDto.Email,
+                ContactEmail = registerDto.ContactEmail,
+                Description = registerDto.Description,
+                // Birthday = registerDto.Birthday,
+                FirstName = registerDto.FirstName,
+                LastName = registerDto.LastName,
+                Phone = registerDto.Phone,
+                Location = registerDto.Location
+            };
+
             var result = await _userManager.CreateAsync(user, registerDto.Password);
+            await _profileRepository.AddAsync(profile);
 
             if (!result.Succeeded) return BadRequest(new ApiResponse(400));
 

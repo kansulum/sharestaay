@@ -8,5 +8,7 @@ namespace Core.Interfaces
     {
         Task<IReadOnlyList<Room>> GetRoomsAsync();
         Task<Room> GetRoomAsync(int id);
+
+        List<Room> GetFavourites(string userId);
     }
 }

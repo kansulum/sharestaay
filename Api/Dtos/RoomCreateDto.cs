@@ -8,6 +8,8 @@ namespace Api.Dtos
         public int Id { get; set; }
         public string Location { get; set; }
 
+        public string Name {get;set;}
+
         public decimal Rent { get; set; }
 
         public decimal InitialDeposit { get; set; }

@@ -13,6 +13,7 @@ using Infrastructure.Services;
 using Api.Middlewares;
 using AutoMapper;
 using Api.Helpers;
+using Api.Hubs;
 
 namespace Api
 {
@@ -31,17 +32,26 @@ namespace Api
             services.AddControllers();
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<IRoomRepository,RoomRepository>();
+            services.AddScoped<IUserRepository,UserRepository>();
+            services.AddScoped<IChatRepository,ChatRepository>();
+            services.AddScoped<INotificationsRepository,NotificationsRepository>();
             services.AddScoped<ITokenService,TokenService>();
+            services.AddScoped<IProfileRepository,ProfileRepository>();
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
             services.AddDbContext<RoomContext>(x => x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
             services.AddDbContext<AppIdentityDbContext>(x => x.UseSqlite(_config.GetConnectionString("IdentityConnection")));   
             services.AddIdentityServices(_config);
+            services.AddSignalR();
 
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                    policy
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .AllowAnyMethod()
+                    .WithOrigins("http://localhost:4200");
                 });
             });
         }
@@ -65,6 +75,7 @@ namespace Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("hubs/chat");
             });
         }
     }

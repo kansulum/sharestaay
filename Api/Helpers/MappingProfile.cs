@@ -5,7 +5,7 @@ using Core.Entities;
 
 namespace Api.Helpers
 {
-    public class MappingProfile : Profile
+    public class MappingProfile : AutoMapper.Profile
     {
         public MappingProfile()
         {
@@ -22,7 +22,7 @@ namespace Api.Helpers
                 .ForMember(r => r.NumberBedRooms, opt => opt.MapFrom(rr => rr.NumberBedRooms))
                 .ForMember(r => r.NumberRoommateAllowed, opt => opt.MapFrom(rr => rr.NumberRoommateAllowed));
 
-                 CreateMap<RoomCreateDto, Room>()
+            CreateMap<RoomCreateDto, Room>()
                 .ForMember(v => v.Id, opt => opt.Ignore())
                 .ForMember(v => v.Location, opt => opt.MapFrom(rr => rr.Location))
                 .ForMember(v => v.Rent, opt => opt.MapFrom(rr => rr.Rent))
@@ -36,8 +36,12 @@ namespace Api.Helpers
                 .ForMember(r => r.NumberBedRooms, opt => opt.MapFrom(rr => rr.NumberBedRooms))
                 .ForMember(r => r.NumberRoommateAllowed, opt => opt.MapFrom(rr => rr.NumberRoommateAllowed))
                 .ForMember(r => r.AppUserEmail, opt => opt.MapFrom(rr => rr.AppUserEmail));
-       
-                
+            
+            CreateMap<AppUser, RoommateDto>()
+                .ForMember(u => u.Email,opt => opt.MapFrom(rr => rr.Email));
+
+
+                            
         }
     }
 }

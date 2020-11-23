@@ -16,13 +16,10 @@ namespace Api.Data
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("Core.Entities.Amenity", b =>
+            modelBuilder.Entity("Core.Entities.AgeBracket", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("RoomId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
@@ -30,9 +27,181 @@ namespace Api.Data
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoomId");
+                    b.ToTable("AgeBrackets");
+                });
+
+            modelBuilder.Entity("Core.Entities.Amenity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Amenities");
+                });
+
+            modelBuilder.Entity("Core.Entities.ChatMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FromUserID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ToUserID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ViewedOn")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ChatMessages");
+                });
+
+            modelBuilder.Entity("Core.Entities.Favourite", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("AppUserId", "RoomId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("Favourites");
+                });
+
+            modelBuilder.Entity("Core.Entities.FriendMapping", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EndUserID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("RequestStatus")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RequestorUserID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FriendMappings");
+                });
+
+            modelBuilder.Entity("Core.Entities.Gender", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genders");
+                });
+
+            modelBuilder.Entity("Core.Entities.OnlineUser", b =>
+                {
+                    b.Property<int>("OnlineUserID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ConnectionID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsOnline")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("OnlineUserID");
+
+                    b.ToTable("OnlineUsers");
+                });
+
+            modelBuilder.Entity("Core.Entities.Profile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactEmail")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Profiles");
                 });
 
             modelBuilder.Entity("Core.Entities.Room", b =>
@@ -103,13 +272,60 @@ namespace Api.Data
                     b.ToTable("RoomAmenities");
                 });
 
+            modelBuilder.Entity("Core.Entities.RoomGender", b =>
+                {
+                    b.Property<int>("PreferedGenderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PreferedGenderId", "RoomId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("RoomGender");
+                });
+
+            modelBuilder.Entity("Core.Entities.RoomRule", b =>
+                {
+                    b.Property<int>("RoomId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RuleId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("RoomId", "RuleId");
+
+                    b.HasIndex("RuleId");
+
+                    b.ToTable("RoomRule");
+                });
+
+            modelBuilder.Entity("Core.Entities.RoommateAgeBracket", b =>
+                {
+                    b.Property<int>("PreferedAgeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AgeBracketId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PreferedAgeId", "RoomId");
+
+                    b.HasIndex("AgeBracketId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("RoommateAgeBracket");
+                });
+
             modelBuilder.Entity("Core.Entities.Rule", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("RoomId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
@@ -117,16 +333,50 @@ namespace Api.Data
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoomId");
-
                     b.ToTable("Rules");
                 });
 
-            modelBuilder.Entity("Core.Entities.Amenity", b =>
+            modelBuilder.Entity("Core.Entities.UserNotification", b =>
                 {
-                    b.HasOne("Core.Entities.Room", null)
-                        .WithMany("Amenities")
-                        .HasForeignKey("RoomId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FromUserID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("NotificationType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ToUserID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserNotifications");
+                });
+
+            modelBuilder.Entity("Core.Entities.Favourite", b =>
+                {
+                    b.HasOne("Core.Entities.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("Core.Entities.RoomAmenities", b =>
@@ -138,7 +388,7 @@ namespace Api.Data
                         .IsRequired();
 
                     b.HasOne("Core.Entities.Room", "Room")
-                        .WithMany()
+                        .WithMany("Amenities")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -148,16 +398,68 @@ namespace Api.Data
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("Core.Entities.Rule", b =>
+            modelBuilder.Entity("Core.Entities.RoomGender", b =>
                 {
-                    b.HasOne("Core.Entities.Room", null)
+                    b.HasOne("Core.Entities.Gender", "PreferedGender")
+                        .WithMany()
+                        .HasForeignKey("PreferedGenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Room", "Room")
+                        .WithMany("RoomGenders")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PreferedGender");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("Core.Entities.RoomRule", b =>
+                {
+                    b.HasOne("Core.Entities.Room", "Room")
                         .WithMany("Rules")
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Rule", "Rule")
+                        .WithMany()
+                        .HasForeignKey("RuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+
+                    b.Navigation("Rule");
+                });
+
+            modelBuilder.Entity("Core.Entities.RoommateAgeBracket", b =>
+                {
+                    b.HasOne("Core.Entities.AgeBracket", "AgeBracket")
+                        .WithMany()
+                        .HasForeignKey("AgeBracketId");
+
+                    b.HasOne("Core.Entities.Room", "Roommate")
+                        .WithMany("RoommateAgeBracket")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AgeBracket");
+
+                    b.Navigation("Roommate");
                 });
 
             modelBuilder.Entity("Core.Entities.Room", b =>
                 {
                     b.Navigation("Amenities");
+
+                    b.Navigation("RoomGenders");
+
+                    b.Navigation("RoommateAgeBracket");
 
                     b.Navigation("Rules");
                 });

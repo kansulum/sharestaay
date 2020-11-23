@@ -33,22 +33,22 @@ namespace Core.Entities
 
         public bool IsSecurityChecked { get; set; }
 
-        public ICollection<Amenity> Amenities { get; set; }
-        public ICollection<Rule> Rules { get; set; }
+        public ICollection<RoomAmenities> Amenities { get; set; }
+        public ICollection<RoomRule> Rules { get; set; }
 
         public string AppUserEmail { get; set; }
 
-        // public ICollection<RoommatePreferredGender>  RoommatePreferredGenders { get; set; }
-        // public ICollection<RoomPreferredAge> RoomPreferredAge { get; set; }
+        public ICollection<RoomGender>  RoomGenders { get; set; }
+        public ICollection<RoommateAgeBracket> RoommateAgeBracket { get; set; }
 
         // public ICollection<Photo> Photos { get; set; }
 
         public Room()
         {
-            Amenities = new Collection<Amenity>();
-            Rules = new Collection<Rule>();
-            // RoommatePreferredGenders = new Collection<RoommatePreferredGender>();
-            // RoomPreferredAge = new Collection<RoomPreferredAge>();
+            Amenities = new Collection<RoomAmenities>();
+            Rules = new Collection<RoomRule>();
+            RoomGenders = new Collection<RoomGender>();
+            RoommateAgeBracket = new Collection<RoommateAgeBracket>();
             // Photos = new Collection<Photo>();
         }
 

@@ -30,16 +30,6 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<IReadOnlyList<Room>> Rooms([FromQuery] RoomSpecParams roomParams)
         {
-            var spec = new RoomWithBrandsAndTypesSpecifications(roomParams);
-
-            var countSpec = new RoomWithFilterForCountSpecifications(roomParams);
-
-            var totalItems = await _roomRepository.CountAsync(countSpec);
-
-            var products = await _roomRepository.ListAsync(spec);
-
-            var data = _mapper.Map<IReadOnlyList<Room>, IReadOnlyList<RoomDto>>(products);
-
             return await _roomRepository.GetListAsync();
         }
 

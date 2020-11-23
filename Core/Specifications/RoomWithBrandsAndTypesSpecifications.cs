@@ -13,9 +13,9 @@ namespace Core.Specifications
             //  (!specParams.TypeId.HasValue || x.ProductTypeId == specParams.TypeId)
         )
         {
-            AddInclude(x => x.Rent);
-            AddInclude(x => x.Location);
-            AddOrderBy(x => x.DescribeNeighborhood);
+            
+            // AddInclude(x => x.Location);
+            // AddOrderBy(x => x.DescribeNeighborhood);
             ApplyPaging(specParams.PageSize * (specParams.PageIndex -1),specParams.PageSize);
 
             if (!string.IsNullOrEmpty(specParams.Sort))

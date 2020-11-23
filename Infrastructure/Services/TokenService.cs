@@ -15,9 +15,7 @@ namespace Infrastructure.Services
     {
         private readonly IConfiguration _config;
         private readonly SymmetricSecurityKey _key;
-        private readonly RoleManager<IdentityRole> _roleManager;
-
-        public TokenService(IConfiguration config)
+        public TokenService(IConfiguration config )
         {
             _config = config;
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"]));
