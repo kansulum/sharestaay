@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Api.Dtos;
 using Api.Extentions;
@@ -44,7 +45,11 @@ namespace Api.Controllers
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
             dto.AppUserEmail = email;
-            
+
+              if(email == null){
+                return BadRequest();
+            }
+
             var room = _mapper.Map<RoomCreateDto,Room>(dto);
             _roomRepository.Add(room);
             await _context.SaveChangesAsync();
@@ -68,6 +73,17 @@ namespace Api.Controllers
              await _context.SaveChangesAsync();
 
             return Ok(roomUpdate);
+        }
+
+        [HttpGet("userrooms")]
+        [Authorize]
+        public async  Task<ActionResult> GetUserRooms() {
+            var userEmail  =  HttpContext.User.RetrieveEmailFromPrincipal();
+            if(userEmail == null){
+                return BadRequest();
+            }
+            var rooms = await _context.Rooms.Where(u => u.AppUserEmail == userEmail).ToListAsync();
+            return Ok(rooms);
         }
 
 
