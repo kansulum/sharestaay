@@ -8,7 +8,7 @@ namespace Core.Entities
     {
                 
         public string Location { get; set; }
-
+        
         public decimal Rent { get; set; }
      
         public decimal InitialDeposit { get; set; }
@@ -23,11 +23,11 @@ namespace Core.Entities
 
         public string DescribeNeighborhood { get; set; }
 
-        public int NumberBedRooms { get; set; }
+        public string NumberBedRooms { get; set; }
 
-        public int NumberBathRooms { get; set; }
+        public string NumberBathRooms { get; set; }
 
-        public int NumberRoommateAllowed { get; set; }
+        public string NumberRoommateAllowed { get; set; }
 
         public string SpaceDescription { get; set; }
 

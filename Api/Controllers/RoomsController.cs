@@ -40,14 +40,15 @@ namespace Api.Controllers
         }
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<Room>> Create(RoomCreateDto dto)
+        public async Task<ActionResult> Create(RoomCreateDto dto)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
             dto.AppUserEmail = email;
+            
             var room = _mapper.Map<RoomCreateDto,Room>(dto);
             _roomRepository.Add(room);
             await _context.SaveChangesAsync();
-            return room;
+            return Ok();
         }
 
         [HttpPut("{id}")]

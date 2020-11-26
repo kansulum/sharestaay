@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HDoD7hrYs/X1StIUiWnlXBcFV0eiOmTHGce04antrnbZFzVlkG81spuAqE+lyPqXdu0W/ubwS8d8EgJ5n9Zgjg==",
+  "dgSpecHash": "rh5a/UP166qf/7WCNtT6eDCq6VH189ou/xxTWVMzBrSQZoxR+1QdBX1mQYijVjeM5r6Np9TrPT2tMDoQB/8bbg==",
   "success": true,
-  "projectFilePath": "C:\\Projects\\ShareStay\\api\\Api.csproj",
+  "projectFilePath": "C:\\Projects\\ShareStay\\Api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\abdulraman.mohammed\\.nuget\\packages\\automapper\\10.1.0\\automapper.10.1.0.nupkg.sha512",
     "C:\\Users\\abdulraman.mohammed\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
